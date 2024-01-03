@@ -190,7 +190,7 @@ def joint_probability(people, one_gene, two_genes, have_trait):
                         prob = (0.5 * (1 - PROBS['mutation']) +
                                 0.5 * PROBS['mutation'])
                     else:
-                        prob = (PROBS['mutation'] * PROBS['mutation'])
+                        prob = 2 * ((1 - PROBS['mutation']) * PROBS['mutation']) # Might need to revise this
                 if person in have_trait:
                     p = prob * PROBS["trait"][1][True]
                 else:
@@ -200,12 +200,12 @@ def joint_probability(people, one_gene, two_genes, have_trait):
                     if father in two_genes:
                         prob = (1 - PROBS['mutation']) * (1 - PROBS['mutation'])
                     elif father in one_gene:
-                        prob = 0.5
+                        prob = 0.5 * (1 - PROBS['mutation']) # Might need to revise this
                     else:
                         prob = (1 - PROBS['mutation']) * PROBS['mutation']
                 elif mother in one_gene:
                     if father in two_genes:
-                        prob = 0.5
+                        prob = 0.5 * (1 - PROBS['mutation']) # Might need to revise this
                     elif father in one_gene:
                         prob = 0.5 * 0.5
                     else:
